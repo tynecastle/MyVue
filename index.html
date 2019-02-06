@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Hello Vue</title>
+        <style>
+            [v-cloak]{display: none}
+        </style>
+    </head>
+    <body>
+        <div id="main">
+            <h1 v-cloak>{{ msg }}</h1>
+            <h2 v-text="msg1"></h2>
+            <p v-html="msg2"></p>
+            <!-- <div v-bind:title="attr">{{ msg3 }}</div> -->
+            <div :title="attr">{{ msg3 }}</div>
+            <hr/>
+            <!-- <input type="button" value="click" v-on:click="f1"/> -->
+            <input type="button" value="click" @click="f1"/>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            var vm = new Vue({
+                el: '#main',
+                data: {
+                    msg: 'Hello Vue',
+                    msg1: 'Hello Vue 1',
+                    msg2: '<h3>Hello Vue 2</h3>',
+                    msg3: 'Hello Vue 3',
+                    attr: 'This is the attribute of msg3'
+                },
+                methods: {
+                    f1: function() {
+                        alert(this.msg)
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
