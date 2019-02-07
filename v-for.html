@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title></title>
+        <style>
+        </style>
+    </head>
+    <body>
+        <div id="main">
+            <!-- Use v-for to iterate arrays -->
+            <ul>
+                <!-- <li v-for="item in list1">{{ item }}</li> -->
+                <li v-for="(item,i) in list1">index_{{ i }}: {{ item }}</li>
+            </ul>
+            <ol>
+                <li v-for="(p,i) in list2">{{ i+1 }}: name:{{ p.name }} age:{{ p.age }} height:{{ p.height }}</li>
+            </ol>
+            
+            <!-- Use v-for to iterate objectives -->
+            <ul>
+                <li v-for="(n,i) in 10" :key="i">index_{{ i }}: {{ n }}</li>
+            </ul>
+            <ul>
+                <li v-for="(v,k) in city" :key="city.id">key:{{ k }} value:{{ v }}</li>
+            </ul>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            var vm = new Vue({
+                el: '#main',
+                data: {
+                    list1: ['item1', 'item2', 'item3'],
+                    list2: [
+                        {name:'andrea', age:27, height:175},
+                        {name:'dempsey', age:30, height:181},
+                        {name:'nick', age:26, height:178},
+                        {name:'whittaker', age:24, height:172},
+                    ],
+                    city: {
+                        id: 1,
+                        name: 'Edinburgh',
+                        country: 'Scotland',
+                        area: 264,
+                        population: 500000,
+                    }
+                },
+                methods: {
+                }
+            })
+        </script>
+    </body>
+</html>
