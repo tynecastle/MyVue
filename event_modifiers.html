@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title></title>
+        <style>
+            .interlayer{width:200px; height:200px; background:#00ffff; margin:20px auto; overflow:hidden;}
+            .outer{width:400px; height:400px; background:#808080; margin:20px auto;}
+        </style>
+    </head>
+    <body>
+        <div id="main">
+            <div class="outer" @click="outer">
+                <!-- '.self' modifier only trigger handler if event.target is the element itself -->
+                <!-- i.e. not from a child element -->
+                <div class="interlayer" @click.self="inter">
+                    <!-- the click event's propagation will be stopped by '.stop' modifier -->
+                    <!-- <input type="button" value="click" @click.stop="btn"/> -->
+                    <input type="button" value="click" @click="btn"/>
+                </div>
+            </div>
+            <!-- the click event will no longer open the link because of the '.prevent' modifier -->
+            <!-- <a @click.prevent="link" href="http://www.mm2018.com/">collection of front-end materials</a> -->
+            <!-- the '.prevent' will only take effect at the first time clicking on the link -->
+            <a @click.prevent.once="link" href="http://www.mm2018.com/">collection of front-end materials</a>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            var vm = new Vue({
+                el: '#main',
+                data: {
+                },
+                methods: {
+                    btn: function() {
+                        console.log('button is pressed')
+                    },
+                    inter: function() {
+                        console.log('interlayer is clicked')
+                    },
+                    outer: function() {
+                        console.log('outer is clicked')
+                    },
+                    link: function() {
+                        console.log('link is clicked')
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
