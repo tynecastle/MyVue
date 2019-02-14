@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>html_classes_bindings</title>
+        <style>
+            .a1{font-size:50px}
+            .a2{color:#0094ff}
+            .a3{background:#808080}
+        </style>
+    </head>
+    <body>
+        <div id="main">
+            <!-- Array syntax -->
+            <!--<h1 :class="['a1','a2','a3']">{{msg}}</h1>-->
+            <!--<h1 :class="['a1','a2',{'a3':flag}]">{{msg}}</h1>-->
+            <!-- Object syntax -->
+            <h1 :class="style">{{msg}}</h1>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            var vm = new Vue({
+                el: '#main',
+                data: {
+                    msg: 'Hello Vue.js',
+                    flag: false,
+                    style: { a1: true, a2: false, a3: true }
+                },
+                methods: {
+                }
+            })
+        </script>
+    </body>
+</html>
