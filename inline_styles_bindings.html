@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>inline_styles_bindings</title>
+        <style>
+        </style>
+    </head>
+    <body>
+        <div id="main">
+            <!-- Object syntax -->
+            <!-- <h1 :style="sytleObj1">{{msg}}</h1> -->
+            <!-- Array syntax -->
+            <h1 :style="[sytleObj1, sytleObj2]">{{msg}}</h1>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            var vm = new Vue({
+                el: '#main',
+                data: {
+                    msg: 'Binding Inline Styles',
+                    // CSS property names can be in either camelCase or kebab-case (use quotes with kebab-case)
+                    //sytleObj1: { color: 'red', fontSize: '50px' },
+                    sytleObj1: { color: 'red', 'font-size': '50px' },
+                    sytleObj2: { background: '#ffd800' },
+                },
+                methods: {
+                }
+            })
+        </script>
+    </body>
+</html>
