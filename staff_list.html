@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>staff list</title>
+        <style>
+            #main {
+                width: 1000px;
+                height: auto;
+                overflow: hidden;
+                margin: 40px auto;
+                border: 1px solid #dedede;
+                border-bottom: none;
+            }
+            #main table {
+                width: 100%;
+            }
+            #main table tr {
+                line-height: 35px;
+            }
+            #main table tr th {
+                border-bottom: 1px solid #dedede;
+                font-size: 16px;
+                text-align: left;
+                text-indent: 20px;
+            }
+            #main table tr td {
+                border-bottom: 1px solid #dedede;
+                font-size: 16px;
+                text-indent: 20px;
+            }
+            .t1 {
+                width: 200px;
+                border: none;
+            }
+            .t2 {
+                width: 60px;
+                border: 1px solid #dedede;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="main">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Date of Join</th>
+                    <th>Operation</th>
+                </tr>
+                <tr>
+                    <td><input type="text" class="t1" placeholder="type in ID"/></td>
+                    <td><input type="text" class="t1" placeholder="type in name"/></td>
+                    <td><input type="text" class="t1" placeholder="search for a name"/></td>
+                    <td><input type="button" class="t2" value="New"/></td>
+                </tr>
+            </table>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            var vm = new Vue({
+                el: '#main',
+                data: {
+                },
+                methods: {
+                }
+            })
+        </script>
+    </body>
+</html>
