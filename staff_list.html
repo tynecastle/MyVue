@@ -26,7 +26,7 @@
             }
             #main table tr td {
                 border-bottom: 1px solid #dedede;
-                font-size: 16px;
+                font-size: 15px;
                 text-indent: 20px;
             }
             .t1 {
@@ -49,11 +49,17 @@
                     <th>Date of Join</th>
                     <th>Operation</th>
                 </tr>
+                <tr v-for="staff in list" v-bind:key="staff.id">
+                    <td>{{staff.id}}</td>
+                    <td>{{staff.name}}</td>
+                    <td>{{staff.time}}</td>
+                    <td><a href="" @click.prevent="del(staff.id)">DEL</a></td>
+                </tr>
                 <tr>
-                    <td><input type="text" class="t1" placeholder="type in ID"/></td>
-                    <td><input type="text" class="t1" placeholder="type in name"/></td>
+                    <td><input type="text" class="t1" placeholder="type in ID" v-model="id"/></td>
+                    <td><input type="text" class="t1" placeholder="type in name" v-model="name"/></td>
                     <td><input type="text" class="t1" placeholder="search for a name"/></td>
-                    <td><input type="button" class="t2" value="New"/></td>
+                    <td><input type="button" class="t2" value="ADD" @click="addbtn"/></td>
                 </tr>
             </table>
         </div>
@@ -62,8 +68,29 @@
             var vm = new Vue({
                 el: '#main',
                 data: {
+                    id: '',
+                    name: '',
+                    list: []
                 },
                 methods: {
+                    addbtn: function() {
+                        newstaff = {
+                            id: this.id,
+                            name: this.name,
+                            time: new Date().toLocaleString()
+                        };
+                        this.list.push(newstaff);
+                        this.id = '';
+                        this.name = '';
+                    },
+                    del: function(id) {
+                        var index = this.list.findIndex(function(callback) {
+                            if (callback.id == id) {
+                                return true
+                            }
+                        })
+                        this.list.splice(index,1)
+                    }
                 }
             })
         </script>
