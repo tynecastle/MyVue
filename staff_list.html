@@ -49,7 +49,7 @@
                     <th>Date of Join</th>
                     <th>Operation</th>
                 </tr>
-                <tr v-for="staff in list" v-bind:key="staff.id">
+                <tr v-for="staff in search(qtext)" v-bind:key="staff.id">
                     <td>{{staff.id}}</td>
                     <td>{{staff.name}}</td>
                     <td>{{staff.time}}</td>
@@ -58,7 +58,7 @@
                 <tr>
                     <td><input type="text" class="t1" placeholder="type in ID" v-model="id"/></td>
                     <td><input type="text" class="t1" placeholder="type in name" v-model="name"/></td>
-                    <td><input type="text" class="t1" placeholder="search for a name"/></td>
+                    <td><input type="text" class="t1" placeholder="search for a name" v-model="qtext"/></td>
                     <td><input type="button" class="t2" value="ADD" @click="addbtn"/></td>
                 </tr>
             </table>
@@ -75,6 +75,7 @@
                         { id: 2, name: 'Nick', time: '2015-03-23' },
                         { id: 3, name: 'Andrea', time: '2019-03-11' },
                     ],
+                    qtext: '',
                 },
                 methods: {
                     addbtn: function() {
@@ -88,13 +89,22 @@
                         this.name = '';
                     },
                     del: function(id) {
-                        var index = this.list.findIndex(function(callback) {
-                            if (callback.id == id) {
+                        var index = this.list.findIndex(function(staff) {
+                            if (staff.id == id) {
                                 return true
                             }
                         })
                         this.list.splice(index,1)
-                    }
+                    },
+                    search: function(qtext) {
+                        var qlist = [];
+                        this.list.forEach(function(staff) {
+                            if(staff.name.indexOf(qtext) != -1) {
+                                qlist.push(staff)
+                            }
+                        })
+                        return qlist;
+                    },
                 }
             })
         </script>
