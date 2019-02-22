@@ -24,38 +24,50 @@
                     }
                 },
 
-                //Each Vue instance goes through a series of initialization steps
-                //when it’s created - for example, it needs to set up data observation,
-                //compile the template, mount the instance to the DOM, and update the
-                //DOM when data changes. Along the way, it also runs functions called
-                //lifecycle hooks, giving users the opportunity to add their own code
-                //at specific stages.
+                // Each Vue instance goes through a series of initialization steps
+                // when it’s created - for example, it needs to set up data observation,
+                // compile the template, mount the instance to the DOM, and update the
+                // DOM when data changes. Along the way, it also runs functions called
+                // lifecycle hooks, giving users the opportunity to add their own code
+                // at specific stages.
 
-                //1.beforeCreate: the first hook at creation stage
+                // 1.beforeCreate: the first hook at creation stage
                 beforeCreate: function () {
                     //console.log(this.msg)
                     //this.sayHi()
-                    //data and message of the instance are not yet initialized
+                    // data and methods of the instance are not yet initialized
                 },  
 
-                //2.created: the second hook at creation stage
+                // 2.created: the second hook at creation stage
                 created: function () {
                     //console.log(this.msg)
                     //this.sayHi()
-                    //data and message are initialized
+                    // data and methods are initialized
                 },
 
-                //3.beforeMount: the third hook at creation stage
+                // 3.beforeMount: the third hook at creation stage
                 beforeMount: function () {
                     //console.log(document.getElementById("con").innerHTML)
-                    //{{msg}} will be displayed at console, rather than its value
+                    // {{msg}} will be displayed at console, rather than its value
                 },
 
-                //4.mounted: the last hook at creation stage
+                // 4.mounted: the last hook at creation stage
                 mounted: function () {
-                    console.log(document.getElementById("con").innerHTML)
-                    //the instance is mounted to the DOM
+                    //console.log(document.getElementById("con").innerHTML)
+                    // the instance is mounted to the DOM
                 },
+
+                // 5.beforeUpdate: the first hook at runtime stage
+                beforeUpdate: function () {
+                    //console.log(document.getElementById("con").innerHTML)
+                    // properties of data object are changed but the DOM is not patched
+                },
+
+                // 6.updated: the second hook at runtime stage
+                updated: function () {
+                    console.log(document.getElementById("con").innerHTML)
+                    // the virtual DOM is re-rendered and patched
+                }
             })
         </script>
     </body>
