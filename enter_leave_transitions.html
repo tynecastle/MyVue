@@ -4,22 +4,28 @@
     <meta charset="utf-8"/>
     <title>enter/leave transitions</title>
     <style>
-        .con{width:200px;height :200px;background:red;}
-        .t1-enter,.t1-leave-to{opacity:0; transform:translateX(300px)}
-        .t1-enter-active,.t1-leave-active{transition:all 1s ease}
+        .con {
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+        .t1-enter, .t1-leave-to {
+            opacity: 0;
+            transform: translateX(300px)
+        }
+        .t1-enter-active, .t1-leave-active {
+            transition: all 1s ease
+        }
     </style>
 </head>
 <body>
     <div id="main">
-        <input type="button" value="显示/隐藏div" @click="btn" />
+        <input type="button" value="display/hide" @click="btn"/>
         <transition name="t1">
-            <div class="con" v-if="flag">
-            </div>
+            <div class="con" v-if="flag"></div>
         </transition>
         <transition>
-            <div class="con1" v-if="flag">
-                111
-            </div>
+            <div class="con1" v-if="flag">this message has no animation</div>
         </transition>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -31,7 +37,7 @@
             },
             methods: {
                 btn: function () {
-                    this.flag=!this.flag
+                    this.flag = !this.flag
                 },
             },
         })
