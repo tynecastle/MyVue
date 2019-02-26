@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <title>transition animations</title>
-    <link href="css/animate.css" rel="stylesheet" />
+    <link href="css/animate.css" rel="stylesheet"/>
     <style>
         .con {
             width: 200px;
@@ -13,43 +13,25 @@
     </style>
 </head>
 <body>
-
     <div id="main">
         <input type="button" value="display/hide" @click="btn" />
-
-
-        <transition enter-active-class="animated bounceInRight" leave-active-class="animated bounceInLeft}">
-            <div class="con" v-if="flag">
-            </div>
+        <transition enter-active-class="bounceInUp animated" leave-active-class="bounceOutDown animated">
+            <div class="con" v-if="flag"></div>
         </transition>
-
-
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
         var vm = new Vue({
             el: '#main',
             data: {
-
                 flag: false
-
-
             },
             methods: {
-
                 btn: function () {
-
-                    this.flag=!this.flag
-
+                    this.flag = !this.flag
                 },
-
             },
-
         })
-
-
     </script>
-
 </body>
 </html>
