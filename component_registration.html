@@ -7,51 +7,49 @@
     </style>
 </head>
 <body>
+    <!-- When using a custom component directly in the DOM (as opposed to in a string
+         template or single-file component), it is strongly recommended following the
+         W3C rules for tag names (all-lowercase, must contain a hyphen). This helps
+         you avoid conflicts with current and future HTML elements. -->
     <div id="main">
-        <test></test>
-        <test1></test1>
-        <test2></test2>
-        <test3></test3>
+        <global-a></global-a>
+        <global-b></global-b>
+        <global-c></global-c>
+        <local-a></local-a>
     </div>
-
-    <hr />
-
+    <hr/>
     <div id="app">
-        <test1></test1>
+        <global-b></global-b>
     </div>
 
-    <template id="content">
+    <template id="third_global">
         <div>
-            <h3>This is the third way of component registration</h3>
+            <h3>The third way of global component registration</h3>
         </div>
+        <!-- Component template should contain exactly one root element. -->
+        <!-- <h3>An redundant line</h3> -->
     </template>
-
-    <template id="con">     
+    <template id="local">
         <div>
-            <h1>This is a private component --- {{msg}}</h1>
+            <h1>This is a local component --- {{msg}}</h1>
         </div>
-        
     </template>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
-        // register a component globally
-        //var t1 = Vue.extend({
-        //    template:'<h1>register a component globally</h1>'
-        //})
-
-        Vue.component('test', Vue.extend({
-            template: '<h1>This is the first way of component registration</h1>'
-        }))
-
-        // second way of component registration
-        Vue.component('test1', {
-            template:'<h2>This is the second way of component registration</h2>'
+        // register a global component
+        /* var g1 = Vue.extend({
+            template: '<h1>The first way of global component registration</h1>'
         })
-
-        // third way of component registration
-        Vue.component('test2', {
-            template:'#content'
+        Vue.component('global-a', g1) */
+        Vue.component('global-a', Vue.extend({
+            template: '<h1>The first way of global component registration</h1>'
+        }))
+        Vue.component('global-b', {
+            template: '<h2>The second way of global component registration (literal text)</h2>'
+        })
+        Vue.component('global-c', {
+            template: '#third_global'
         })
 
         var vm = new Vue({
@@ -60,11 +58,10 @@
             },
             methods: {
             },
-
-            // private component
+            // register a local component (NOTE: 'components' must have an 's')
             components: {
-                test3: {
-                    template: '#con',
+                'local-a': {
+                    template: '#local',
                     data: function () {
                         return {
                             msg: 'this is data inside a component'
@@ -86,3 +83,4 @@
     </script>
 </body>
 </html>
+
