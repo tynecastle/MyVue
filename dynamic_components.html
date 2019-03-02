@@ -2,64 +2,45 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>14 组件切换</title>
+    <title>dynamic components</title>
     <style>
-
         .t1-enter, .t1-leave-to {
             opacity: 0;
             transform: translateX(300px)
         }
-
         .t1-enter-active, .t1-leave-active {
             transition: all 1s ease
         }
     </style>
 </head>
 <body>
-
     <div id="main">
-        <a href="" @click.prevent="name='test1'">组件1</a>
-        <a href="" @click.prevent="name='test2'">组件2</a>
-        <a href="" @click.prevent="name='test3'">组件3</a>
-
+        <a href="" @click.prevent="name='dynamic-a'">Home</a>
+        <a href="" @click.prevent="name='dynamic-b'">Posts</a>
+        <a href="" @click.prevent="name='dynamic-c'">Archive</a>
         <transition name="t1" mode="out-in">
-            <component :is="name">
-            </component>
+            <component :is="name"></component>
         </transition>
-
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>       
-
-
-        Vue.component('test1', {
-            template:'<h1>这是h1</h1>'
+        Vue.component('dynamic-a', {
+            template: '<h1>Home component</h1>'
         })
-
-        Vue.component('test2', {
-            template: '<h1>这是h2</h1>'
+        Vue.component('dynamic-b', {
+            template: '<h1>Posts component</h1>'
         })
-
-        Vue.component('test3', {
-            template: '<h1>这是h3</h1>'
+        Vue.component('dynamic-c', {
+            template: '<h1>Archive component</h1>'
         })
-
         var vm = new Vue({
             el: '#main',
             data: {
-
-                name:'test1'
-
+                name: 'dynamic-a'
             },
             methods: {
-
             },
-
         })
-
-
     </script>
-
 </body>
 </html>
