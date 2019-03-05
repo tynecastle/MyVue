@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Vue Router</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div id="main">
+        <!--<a href="#/t1">组件1</a>
+        <a href="#/t2">组件2</a>-->
+        <router-link to="/t1?id=10">组件1</router-link>
+        <router-link to="/t2">组件2</router-link>
+        <router-view></router-view>
+    </div>
+
+    <template id="con">
+        <h1>组件1---{{$route.query.id}}</h1>
+    </template>
+    <template id="con1">
+        <h1>组件2</h1>
+    </template>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script> 
+    <script>
+        var t1 = {
+            template: '#con'
+        }
+        var t2 = {
+            template: '#con1'
+        }
+        var routerObj = new VueRouter({
+            routes: [
+                { path: '/', redirect:'/t1'},            
+                { path: '/t1', component: t1 },
+                { path: '/t2', component: t2 },
+            ]
+        })
+        var vm = new Vue({
+            el: '#main',
+            data: {
+            },
+            methods: {
+
+            },
+            router: routerObj
+        })
+    </script>
+</body>
+</html>
