@@ -8,31 +8,34 @@
 </head>
 <body>
     <div id="main">
-        <!--<a href="#/t1">组件1</a>
-        <a href="#/t2">组件2</a>-->
-        <router-link to="/t1?id=10">组件1</router-link>
-        <router-link to="/t2">组件2</router-link>
+        <!--<a href="#/t1">com1</a>
+        <a href="#/t2">com2</a>-->
+        <router-link to="/t1?id=10">com1</router-link>
+        <router-link to="/t2">com2</router-link>
         <router-view></router-view>
     </div>
 
-    <template id="con">
-        <h1>组件1---{{$route.query.id}}</h1>
+    <template id="com1">
+        <!-- pass parameters -->
+        <h1>Component 1---{{$route.query.id}}</h1>
     </template>
-    <template id="con1">
-        <h1>组件2</h1>
+    <template id="com2">
+        <h1>Component 2</h1>
     </template>
+
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script> 
     <script>
         var t1 = {
-            template: '#con'
+            template: '#com1'
         }
         var t2 = {
-            template: '#con1'
+            template: '#com2'
         }
+        // define routes
         var routerObj = new VueRouter({
             routes: [
-                { path: '/', redirect:'/t1'},            
+                { path: '/', redirect:'/t1' },
                 { path: '/t1', component: t1 },
                 { path: '/t2', component: t2 },
             ]
@@ -42,8 +45,8 @@
             data: {
             },
             methods: {
-
             },
+            // pass a router propertey to a Vue instance
             router: routerObj
         })
     </script>
