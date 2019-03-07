@@ -10,43 +10,53 @@
     <div id="main">
         <!--<a href="#/t1">com1</a>
         <a href="#/t2">com2</a>-->
+        <!-- use router-link component for navigation -->
+        <!-- specify the link by passing the 'to' prop -->
+        <!-- '<router-link>' will be rendered as an '<a>' tag by default -->
         <router-link to="/t1?id=10">com1</router-link>
         <router-link to="/t2">com2</router-link>
+        <router-link to="/t2?action=login">com3</router-link>
+        <!-- route outlet -->
+        <!-- component matched by the route will render here -->
         <router-view></router-view>
     </div>
 
     <template id="com1">
         <!-- pass parameters -->
-        <h1>Component 1---{{$route.query.id}}</h1>
+        <h1>Component 1 --- {{ $route.query.id }}</h1>
     </template>
     <template id="com2">
-        <h1>Component 2</h1>
+        <h1>Component 2 --- {{ $route.query.action }}</h1>
     </template>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script> 
     <script>
+        // 1. Define route components
         var t1 = {
             template: '#com1'
         }
         var t2 = {
             template: '#com2'
         }
-        // define routes
+        // 2. Create the router instance
         var routerObj = new VueRouter({
+            // 3. Define some routes
+            // each route should map to a component
             routes: [
                 { path: '/', redirect:'/t1' },
                 { path: '/t1', component: t1 },
                 { path: '/t2', component: t2 },
             ]
         })
+        // 4. Create and mount the root instance
         var vm = new Vue({
             el: '#main',
             data: {
             },
             methods: {
             },
-            // pass a router propertey to a Vue instance
+            // inject a router to a Vue instance
             router: routerObj
         })
     </script>
